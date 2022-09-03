@@ -20,7 +20,8 @@ const displayCategories = (categories) => {
 
 }
 const loadCategoryId = categoryId => {
-    console.log(categoryId)
+    // console.log(categoryId)
+    lodderSpinner(true)
     // const categoryString = JSON.stringify(category_id);
     // console.log(categoryString)
     const url = ` https://openapi.programming-hero.com/api/news/category/0${categoryId}`;
@@ -28,24 +29,43 @@ const loadCategoryId = categoryId => {
     fetch(url)
         .then(res => res.json())
         .then(data => displayCategoryId(data.data))
+        .catch(error => console.log(error))
 }
 
 
-const displayCategoryId = categoriesId => {
+const displayCategoryId = datas => {
+    // console.log(datas)
+     // sorting data ///
+    datas.sort((a, b) => {
+        return b.total_view - a.total_view;
+    });
+     // console.log(datas);
 
       // Show news number in input field
     const inputField = document.getElementById('input-field');
-    const number = categoriesId.length;
+    const number = datas.length;
     if (number === 0) {
         inputField.value = 'No data found';
-        // lodder(false);
+        lodderSpinner(false);
     } else {
         inputField.value = `${number} items found of this category `
     }
 
     const categoryDetailsContainer = document.getElementById('category-container-details')
     categoryDetailsContainer.innerHTML = '';
-    categoriesId.forEach(data => {
+    datas.forEach(data => {
+
+        
+        // *author name total views are not found masseage ***
+
+        if (data.total_view === 0 || data.total_view == null) {
+            data.total_view = 'No data available'
+        }
+
+        if (data.author.name === null) {
+            data.author.name = 'No data available';
+        }
+
         const allNewsDiv = document.createElement('div');
                 allNewsDiv.classList.add('card');
                 allNewsDiv.classList.add('mb-3');
@@ -67,7 +87,7 @@ const displayCategoryId = categoriesId => {
                                 <i class="fa-solid fa-eye"></i><span class="ms-2 me-5">${data.total_view? data.total_view : "no view found"}</span>
                                 </div>
                                 <div>
-                                <button onclick="showDitals('${data._id}')" class="btn btn-primary ms-5 pt-0 pb-0 ps-3 pe-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
+                                <button onclick="showDetails('${data._id}')" class="btn btn-primary ms-5 pt-0 pb-0 ps-3 pe-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
                                 </div>
                             </div>
                         </div>
@@ -75,12 +95,20 @@ const displayCategoryId = categoriesId => {
             </div>
     `;
     categoryDetailsContainer.appendChild(allNewsDiv);
+    lodderSpinner(false);
     })
 }
 
-const loadBlog = (blog) => {
-    const blogDetails = document.getElementById('blogDetails')
-    console.log(blogDetails)
+
+// loder part start 
+const lodderSpinner = isLoaderSpinner => {
+    const loderSection = document.getElementById('loder-field');
+    if (isLoaderSpinner) {
+        loderSection.classList.remove('d-none');
+    } else {
+        loderSection.classList.add('d-none');
+    }
 }
+
 
 loadCategories();
