@@ -87,7 +87,7 @@ const displayCategoryId = datas => {
                                 <i class="fa-solid fa-eye"></i><span class="ms-2 me-5">${data.total_view ? data.total_view : "no view found"}</span>
                                 </div>
                                 <div>
-                                <button onclick="showDetails('${data._id}')" class="btn btn-primary ms-5 pt-0 pb-0 ps-3 pe-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
+                                <button onclick="showDetails('${data._id}')" class="btn btn-primary ms-5 px-4" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
                                 </div>
                             </div>
                         </div>
