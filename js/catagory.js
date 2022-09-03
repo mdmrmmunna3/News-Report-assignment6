@@ -73,5 +73,11 @@ const displayCategoryId = categoriesId => {
     
     })
 }
+
+const loadBlog = (blog) => {
+    const blogDetails = document.getElementById('blogDetails')
+    console.log(blogDetails)
+}
+
 loadCategories();
 

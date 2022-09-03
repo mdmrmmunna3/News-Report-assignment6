@@ -27,7 +27,7 @@
 
         <form class="d-flex" role="search">
           <a href="" class="fw-semibold text-decoration-none">News</a>
-          <a href="" onclick="loadBlog()" class="ms-4 text-secondary fw-semibold text-decoration-none">Blog</a>
+          <a href="#" onclick="loadBlog('blogDetails')" class="ms-4 text-secondary fw-semibold text-decoration-none">Blog</a>
         </form>
       </div>
     </nav>
@@ -60,7 +60,74 @@
       </div>
     </section>
 
+    <!-- blog section  -->
+    <section>
+          <!-- Button trigger modal -->
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#blogDetails">
+          Launch demo modal
+        </button>
 
+        <!-- Modal -->
+        <div class="modal fade" id="blogDetails" tabindex="-1" aria-labelledby="blogDetailsLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="blogDetailsLabel">Modal title</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <!-- question part  -->
+                <div class="accordion accordion-flush" id="accordionFlushExample">
+                  <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingOne">
+                      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        Difference between var, let and const keywords
+                      </button>
+                    </h2>
+                      <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body"> <span class="fw-bold">var</span> : Global scoped or function scoped. The scope of the var keyword is the global or function scope. It means variables defined outside the function can be accessed globally, and variables defined inside a particular function can be accessed within the function. <br>
+                        <span class="fw-bold">let</span> : The let keyword is an improved version of the var keyword. The scope of a let variable is only block scoped. It can't be accessible outside the particular block ({block}).  <br>
+                        <span class="fw-bold">const</span> : The const keyword has all the properties that are the same as the let keyword, except the user cannot update it. When users declare a const variable, they need to initialize it, otherwise, it returns an error. The user cannot update the const variable once it is declared. 
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="flush-headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                          Difference between arrow function and regular function.
+                        </button>
+                      </h2>
+                      <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body"><span class="fw-bold">Regular Function : </span> Regular functions created using function declarations or expressions are constructible and callable. Since regular functions are constructible, they can be called using the new keyword. <br>
+                        <span class="fw-bold">Arrow Function : </span> However, the arrow functions are only callable and not constructible, i.e arrow functions can never be used as constructor functions. 
+                        </div>
+                      </div>
+                    </div>
+                    <div class="accordion-item">
+                      <h2 class="accordion-header" id="flush-headingThree">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                          Difference between forEach, map, filter, find.
+                        </button>
+                      </h2>
+                      <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body"> <span class="fw-bold">forEach() : </span>.forEach(), is used to execute the same code on every element in an array but does not change the array and it returns undefined. <br>
+                          <span class="fw-bold">map() : </span>.map() executes the same code on every element in an array and returns a new array with the updated elements. <br>
+                          <span class="fw-bold">filter() : </span>.filter() checks every element in an array to see if it meets a certain criteria and returns a new array with the elements that return truthy for the criteria. <br>
+                          <span class="fw-bold">find() : </span> Function .find() is also a search function like the previous but they differ in one small detail — this function returns only one match in an array. If in an array is more than one result, the function will return the first that has matched.
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                
+              </div>
+            </div>
+          </div>
+        </div>
+    </section>
+    
   </main>
   <!--*/*/ main part end */*/*/ -->
 
@@ -72,5 +139,3 @@
 </body>
 
 </html>
-
-<!-- catagories part  -->
