@@ -24,7 +24,7 @@ const loadCategoryId = categoryId => {
     // const categoryString = JSON.stringify(category_id);
     // console.log(categoryString)
     const url = ` https://openapi.programming-hero.com/api/news/category/0${categoryId}`;
-    // console.log(url)
+    console.log(url)
     fetch(url)
         .then(res => res.json())
         .then(data => displayCategoryId(data.data))
@@ -38,14 +38,18 @@ const displayCategoryId = categoriesId => {
     const number = categoriesId.length;
     if (number === 0) {
         inputField.value = 'No data found';
-        lodder(false);
+        // lodder(false);
     } else {
         inputField.value = `${number} items found of this category `
     }
 
     const categoryDetailsContainer = document.getElementById('category-container-details')
+    categoryDetailsContainer.innerHTML = '';
     categoriesId.forEach(data => {
-        categoryDetailsContainer.innerHTML = `
+        const allNewsDiv = document.createElement('div');
+                allNewsDiv.classList.add('card');
+                allNewsDiv.classList.add('mb-3');
+                allNewsDiv.innerHTML = `
             <div class="row g-0">
                     <div class="col-md-4">
                         <img src="${data.image_url}" class="img-fluid rounded-start" alt="...">
@@ -58,9 +62,9 @@ const displayCategoryId = categoriesId => {
                                 <div style="width: 30px;">
                                     <img class="rounded img-fluid" src="${data.author.img}" alt="">
                                 </div>
-                                <p class="ms-2 me-5">${data.author.name}</p>
+                                <p class="ms-2 me-5">${data.author.name? data.author.name : "No Author name found"}</p>
                                 <div>
-                                <i class="fa-solid fa-eye"></i><span class="ms-2 me-5">${data.total_view}</span>
+                                <i class="fa-solid fa-eye"></i><span class="ms-2 me-5">${data.total_view? data.total_view : "no view found"}</span>
                                 </div>
                                 <div>
                                 <button onclick="showDitals('${data._id}')" class="btn btn-primary ms-5 pt-0 pb-0 ps-3 pe-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
@@ -70,7 +74,7 @@ const displayCategoryId = categoriesId => {
                     </div>
             </div>
     `;
-    
+    categoryDetailsContainer.appendChild(allNewsDiv);
     })
 }
 
@@ -80,4 +84,3 @@ const loadBlog = (blog) => {
 }
 
 loadCategories();
-
