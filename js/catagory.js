@@ -151,10 +151,11 @@ const displayModalDitails = data => {
     detail.innerText = data.details;
 
     const authorImage = document.getElementById('author-img');
-    authorImage.innerHTML = `<img class="img-fluid" src="${data.author.img}" alt="">
-       
-    `
+    authorImage.innerHTML =` <img class="img-fluid" src="${data.author.img}" alt="">
 
+    `;
+
+    
 }
 
 
