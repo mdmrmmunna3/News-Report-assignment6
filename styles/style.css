@@ -1,0 +1,20 @@
+/* google fonts  */
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+body {
+    background-color: rgba(211, 211, 211, 0.24);
+    font-family: 'Poppins', sans-serif;
+
+}
+
+.category-item {
+    list-style: none;
+    font-weight: 500;
+}
+
+.category-item:hover {
+    background-color: rgba(204, 204, 245, 0.39);
+    padding: 0 2px;
+    border-radius: 5px;
+    color: blue;
+    
+}
