@@ -35,13 +35,13 @@ const loadCategoryId = categoryId => {
 
 const displayCategoryId = datas => {
     // console.log(datas)
-     // sorting data ///
+    // sorting data ///
     datas.sort((a, b) => {
         return b.total_view - a.total_view;
     });
-     // console.log(datas);
+    // console.log(datas);
 
-      // Show news number in input field
+    // Show news number in input field
     const inputField = document.getElementById('input-field');
     const number = datas.length;
     if (number === 0) {
@@ -55,7 +55,7 @@ const displayCategoryId = datas => {
     categoryDetailsContainer.innerHTML = '';
     datas.forEach(data => {
 
-        
+
         // *author name total views are not found masseage ***
 
         if (data.total_view === 0 || data.total_view == null) {
@@ -67,9 +67,9 @@ const displayCategoryId = datas => {
         }
 
         const allNewsDiv = document.createElement('div');
-                allNewsDiv.classList.add('card');
-                allNewsDiv.classList.add('mb-3');
-                allNewsDiv.innerHTML = `
+        allNewsDiv.classList.add('card');
+        allNewsDiv.classList.add('mb-3');
+        allNewsDiv.innerHTML = `
             <div class="row g-0">
                     <div class="col-md-4">
                         <img src="${data.image_url}" class="img-fluid rounded-start" alt="...">
@@ -82,9 +82,9 @@ const displayCategoryId = datas => {
                                 <div style="width: 30px;">
                                     <img class="rounded img-fluid" src="${data.author.img}" alt="">
                                 </div>
-                                <p class="ms-2 me-5">${data.author.name? data.author.name : "No Author name found"}</p>
+                                <p class="ms-2 me-5">${data.author.name ? data.author.name : "No Author name found"}</p>
                                 <div>
-                                <i class="fa-solid fa-eye"></i><span class="ms-2 me-5">${data.total_view? data.total_view : "no view found"}</span>
+                                <i class="fa-solid fa-eye"></i><span class="ms-2 me-5">${data.total_view ? data.total_view : "no view found"}</span>
                                 </div>
                                 <div>
                                 <button onclick="showDetails('${data._id}')" class="btn btn-primary ms-5 pt-0 pb-0 ps-3 pe-3" data-bs-toggle="modal" data-bs-target="#exampleModal">Details</button>
@@ -94,8 +94,8 @@ const displayCategoryId = datas => {
                     </div>
             </div>
     `;
-    categoryDetailsContainer.appendChild(allNewsDiv);
-    lodderSpinner(false);
+        categoryDetailsContainer.appendChild(allNewsDiv);
+        lodderSpinner(false);
     })
 }
 
@@ -108,6 +108,53 @@ const lodderSpinner = isLoaderSpinner => {
     } else {
         loderSection.classList.add('d-none');
     }
+}
+
+
+// show details modal ***
+
+const showDetails = id => {
+    // console.log(id)
+    const url = `https://openapi.programming-hero.com/api/news/${id}`;
+    fetch(url)
+        .then(res => res.json())
+        .then(data => displayModalDitails(data.data[0]))
+        .catch(error => console.log(error))
+}
+
+const displayModalDitails = data => {
+    // console.log(data)
+
+     // *author name total views are not found masseage ***
+
+     if (data.total_view === 0 || data.total_view == null) {
+        data.total_view = 'No data available'
+    }
+
+    if (data.author.name === null) {
+        data.author.name = 'No data available';
+    }
+
+
+
+
+    const Modaltitle = document.getElementById('exampleModalLabel');
+    Modaltitle.innerText = data.title;
+
+    const image = document.getElementById('image-of-modal');
+    image.innerHTML = `
+    <img class="img-fluid" src="${data.image_url}" alt="">
+
+    `;
+
+    const detail = document.getElementById('detail-of-modal');
+    detail.innerText = data.details;
+
+    const authorImage = document.getElementById('author-img');
+    authorImage.innerHTML = `<img class="img-fluid" src="${data.author.img}" alt="">
+       
+    `
+
 }
 
 
